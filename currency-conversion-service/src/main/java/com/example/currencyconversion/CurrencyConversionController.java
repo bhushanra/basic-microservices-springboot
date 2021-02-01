@@ -12,9 +12,14 @@ import org.springframework.web.client.RestTemplate;
 @RestController  
 public class CurrencyConversionController   
 {
+	
+	
 	@Autowired
 	private CurrencyExchangeServiceProxy proxy;  
 
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	@GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}") //where {from} and {to} represents the column   
 	public CurrencyConversionBean convertCurrency(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity)  
 	{  
@@ -26,7 +31,7 @@ public class CurrencyConversionController
 		//ResponseEntity<CurrencyConversionBean>responseEntity=new RestTemplate().getForEntity("http://localhost:8000/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class, uriVariables);  
 		
 		//CurrencyConversionBean response=new RestTemplate().getForObject("http://localhost:8000/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class, uriVariables);
-		CurrencyConversionBean response=new RestTemplate().getForObject("http://currency-exchange-service/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class, uriVariables);
+		CurrencyConversionBean response=restTemplate.getForObject("http://CURRENCY-EXCHANGE-SERVICE/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class, uriVariables);
 
 		
 		//CurrencyConversionBean response=responseEntity.getBody();  
