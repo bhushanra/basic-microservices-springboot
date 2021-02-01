@@ -19,10 +19,10 @@ public class CurrencyConversionServiceApplication {
 	
 	@Bean
 	@LoadBalanced
-	public RestTemplate getRestTemplate(RestTemplateBuilder builder)
+	public RestTemplate getRestTemplate()
 	{
-		//return new RestTemplate();
-	    return builder.build();
+		return new RestTemplate();
+	    //return builder.build();
 	}
 	
 	public static void main(String[] args) {
